@@ -64,9 +64,14 @@ app.post("/api/notes", (req, res) => {
     fs.readFile(path.join(__dirname, "./db/db.json"), 'utf8', (err, data) => {
         if (err) throw err;
 
-        dbArr = data;
+        dbArr = JSON.parse(data);
         console.log(dbArr);
 
+        const lastId = (dbArr.length > 0) ? parseInt(dbArr[dbArr.length - 1].id) : 0;
+
+        const newNote = req.body;
+        newNote.id = lastId + 1;
+            console.log(newNote);
         // dbArr += req.body;
 
 
@@ -76,10 +81,6 @@ app.post("/api/notes", (req, res) => {
     // const lastId= ;
 
     //     const newNote = req.body;
-
-    //     newNote.id = 
-    // read file, convert from json? JSON.parse
-    // store as var
 
     // req.body: add "id" property to object; ref last object in json, ++ update, use num as id val;
     // req.body: add right before final object (splice, I think)
