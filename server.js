@@ -2,6 +2,7 @@
 // =============================================================
 const path = require("path");
 const express = require("express");
+const fs = require("fs");
 
 // Sets up the Express App
 // =============================================================
@@ -58,6 +59,25 @@ app.get("/api/notes", (req, res) => {
 // POST /api/notes
 app.post("/api/notes", (req, res) => {
 
+    let dbArr = [];
+
+    fs.readFile(path.join(__dirname, "./db/db.json"), 'utf8', (err, data) => {
+        if (err) throw err;
+
+        dbArr = data;
+        console.log(dbArr);
+
+        // dbArr += req.body;
+
+
+        res.send(dbArr);
+    })
+
+    // const lastId= ;
+
+    //     const newNote = req.body;
+
+    //     newNote.id = 
     // read file, convert from json? JSON.parse
     // store as var
 
@@ -76,10 +96,10 @@ app.post("/api/notes", (req, res) => {
 // searchedCharacter = searchedCharacter.replace(/\s+/g, "").toLowerCase();
 // $.get("/api/characters/" + searchedCharacter, function(data) {
 
-    app.get("./assets/js/index.js", (req, res) => {
-        res.sendFile(path.join(__dirname, "./assets/js/index.js"));
-    });
-    
+app.get("./assets/js/index.js", (req, res) => {
+    res.sendFile(path.join(__dirname, "./assets/js/index.js"));
+});
+
 
 
 // catch-all (MUST BE LAST LISTED ROUTE): will route to here if doesn't match any of the above
