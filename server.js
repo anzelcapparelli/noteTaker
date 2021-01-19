@@ -65,16 +65,18 @@ app.post("/api/notes", (req, res) => {
         if (err) throw err;
 
         dbArr = JSON.parse(data);
-        console.log(dbArr);
-
+        
         const lastId = (dbArr.length > 0) ? parseInt(dbArr[dbArr.length - 1].id) : 0;
 
         const newNote = req.body;
         newNote.id = lastId + 1;
-            console.log(newNote);
-        // dbArr += req.body;
+        
+        console.log(newNote);
+        
+        dbArr.push(newNote);
 
-
+        console.log(dbArr);
+        
         res.send(dbArr);
     })
 
