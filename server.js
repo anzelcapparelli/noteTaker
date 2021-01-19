@@ -53,9 +53,6 @@ app.get("/api/notes", (req, res) => {
     res.sendFile(path.join(__dirname, "./db/db.json"));
 })
 
-// gonna need to send as a request to show on the notes page!
-
-
 // POST /api/notes
 app.post("/api/notes", (req, res) => {
 
@@ -64,27 +61,29 @@ app.post("/api/notes", (req, res) => {
     fs.readFile(path.join(__dirname, "./db/db.json"), 'utf8', (err, data) => {
         if (err) throw err;
 
-        dbArr = JSON.parse(data);
-        
+        if (dbArr) {
+            dbArr = JSON.parse(data);
+        }
+
         const lastId = (dbArr.length > 0) ? parseInt(dbArr[dbArr.length - 1].id) : 0;
 
         const newNote = req.body;
         newNote.id = lastId + 1;
-        
+
         console.log(newNote);
-        
+
         dbArr.push(newNote);
 
         console.log(dbArr);
-        
-        res.send(dbArr);
+
+        fs.writeFile("./db/db.json", JSON.stringify(dbArr), (err) => {
+            err ? console.error(err) : console.log("success!")
+        });
+
+        res.send();
     })
 
-    // const lastId= ;
 
-    //     const newNote = req.body;
-
-    // req.body: add "id" property to object; ref last object in json, ++ update, use num as id val;
     // req.body: add right before final object (splice, I think)
 
     // res.sendFile(path.join(__dirname, "./db/db.json"));
@@ -94,14 +93,18 @@ app.post("/api/notes", (req, res) => {
 
 // DELETE /api/notes/:id
 
+// likely gonna be real similar to post!
+// read json.db file, parse it, use id# with for loop: is matches, splice/split/get rid of that object
+// save new db.json file
 
-// response.end(`Life is beautifully terrible, which is what makes it so breathtaking`);
+
+// =============================================================
+
+
+
+// response.end(``);
 // searchedCharacter = searchedCharacter.replace(/\s+/g, "").toLowerCase();
 // $.get("/api/characters/" + searchedCharacter, function(data) {
-
-app.get("./assets/js/index.js", (req, res) => {
-    res.sendFile(path.join(__dirname, "./assets/js/index.js"));
-});
 
 
 
