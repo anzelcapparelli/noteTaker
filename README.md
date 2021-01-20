@@ -4,7 +4,7 @@
 
 deployed app: [click here](https://aqueous-fjord-57667.herokuapp.com/)
 
-Launch page:
+### Launch page:
 ![launch page](images/noteTakerLaunch.jpg)
 
 ## Table of contents
@@ -30,11 +30,11 @@ to download a personal version of the app, download files from the noteTaker rep
 
 pressing 'Get Started' on the launch page navigates to a page that allows viewing, adding, and deleting notes. To view the contents of a note (if any exist), click on the title of the note on the right; to write a new note (from viewing previous notes), click on the button that looks like a pencil, enter a title and contents for the note, then press the save button that appears (when both fields have something entered); to delete a note, click on the trashbin button next to the desired note to delete. This app handles removing all notes (all can be deleted if desired).
 
-adding a note:
+### adding a note:
 ![adding a note](images/noteTakerNew.jpg)
 
 
-viewing an existing note:
+### viewing an existing note:
 ![view note](images/noteTakerView.jpg)
 
 
