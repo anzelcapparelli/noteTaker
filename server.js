@@ -27,7 +27,9 @@ fs.readFile(path.join(__dirname, "./db/db.json"), 'utf8', (err, data) => {
 
 })
 
-
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "./public/index.html"));
+});
 
 // GET /notes
 
