@@ -77,7 +77,7 @@ app.post("/api/notes", (req, res) => {
 
         console.log(dbArr);
 
-        fs.writeFile("./db/db.json", JSON.stringify(dbArr), (err) => {
+        fs.writeFile(path.join(__dirname, "./db/db.json"), JSON.stringify(dbArr), (err) => {
             err ? console.error(err) : console.log("success!")
         });
 
@@ -120,7 +120,7 @@ app.delete("/api/notes/:id", (req, res) => {
             }
         }
 
-        fs.writeFile("./db/db.json", JSON.stringify(dbArr), (err) => {
+        fs.writeFile(path.join(__dirname, "./db/db.json"), JSON.stringify(dbArr), (err) => {
             err ? console.error(err) : console.log("success!")
         });
 
