@@ -1,1 +1,1 @@
-[{"title":"Empty Notes Trial","text":"testing if loading when nothing in db.json breaks code","id":1},{"title":"Modded WriteFiles","text":"changed writeFile pathways so they should work once deployed to Heroku","id":2}]
+[{"title":"Empty Notes Trial","text":"testing if loading when nothing in db.json breaks code","id":1},{"title":"Modded WriteFiles","text":"changed writeFile pathways so they should work once deployed to Heroku","id":2},{"title":"Errant 'console.logs'","text":"adding a note so the console.logs will show up (easier to identify where and delete them)","id":3}]

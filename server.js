@@ -71,14 +71,10 @@ app.post("/api/notes", (req, res) => {
         const newNote = req.body;
         newNote.id = lastId + 1;
 
-        console.log(newNote);
-
         dbArr.push(newNote);
 
-        console.log(dbArr);
-
         fs.writeFile(path.join(__dirname, "./db/db.json"), JSON.stringify(dbArr), (err) => {
-            err ? console.error(err) : console.log("success!")
+            err ? console.error(err) : console.log("new note added")
         });
 
         res.send();
@@ -102,16 +98,9 @@ app.delete("/api/notes/:id", (req, res) => {
     fs.readFile(path.join(__dirname, "./db/db.json"), 'utf8', (err, data) => {
         if (err) throw err;
 
-        console.log(`reading file for deletion of ${delId}`);
-
-
         if (dbArr) {
             dbArr = JSON.parse(data);
         }
-
-        console.log(dbArr.length);
-
-        // id not in req.body?
 
         for (i = 0; i < dbArr.length; i++) {
 
@@ -121,7 +110,7 @@ app.delete("/api/notes/:id", (req, res) => {
         }
 
         fs.writeFile(path.join(__dirname, "./db/db.json"), JSON.stringify(dbArr), (err) => {
-            err ? console.error(err) : console.log("success!")
+            err ? console.error(err) : console.log(`note with id: ${delId} was deleted`)
         });
 
         res.send();
