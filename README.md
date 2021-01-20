@@ -2,6 +2,8 @@
   
 ![License](https://img.shields.io/badge/License-MIT-informational)
 
+deployed app: [click here](https://aqueous-fjord-57667.herokuapp.com/)
+
   ## Table of contents
   ​
   
