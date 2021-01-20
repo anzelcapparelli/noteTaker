@@ -15,26 +15,17 @@ app.use(express.json());
 app.use(express.static("public"))
 
 
-// // The code below points the server to a series of "route" files. These routes
-// // give our server a "map" of how to respond when users visit or request data
-// // from various URLs.
-// require("./routes/apiRoutes")(app);
-// require("./routes/htmlRoutes")(app);
-
-// ^^^ do only if you put routes into own files!
-
-
 //data stored elsewhere (db.json file)
 // =============================================================
 
+fs.readFile(path.join(__dirname, "./db/db.json"), 'utf8', (err, data) => {
+    if (err) {
+        fs.writeFile(path.join(__dirname, "./db/db.json"), JSON.stringify([]), (err) => {
+            err ? console.error(err) : console.log("no db.json file- generated file for note storage between sessions")
+        })
+    }
 
-
-// Routes
-// =============================================================
-
-
-
-
+})
 
 
 
@@ -61,8 +52,7 @@ app.post("/api/notes", (req, res) => {
     fs.readFile(path.join(__dirname, "./db/db.json"), 'utf8', (err, data) => {
         if (err) throw err;
 
-        // shouldn't it be if(data)?
-        if (dbArr) {
+        if (data) {
             dbArr = JSON.parse(data);
         }
 
@@ -98,14 +88,14 @@ app.delete("/api/notes/:id", (req, res) => {
     fs.readFile(path.join(__dirname, "./db/db.json"), 'utf8', (err, data) => {
         if (err) throw err;
 
-        if (dbArr) {
+        if (data) {
             dbArr = JSON.parse(data);
         }
 
         for (i = 0; i < dbArr.length; i++) {
 
             if (dbArr[i].id === delId) {
-                dbArr.splice(i,1);
+                dbArr.splice(i, 1);
             }
         }
 
