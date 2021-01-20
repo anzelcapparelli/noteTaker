@@ -61,6 +61,7 @@ app.post("/api/notes", (req, res) => {
     fs.readFile(path.join(__dirname, "./db/db.json"), 'utf8', (err, data) => {
         if (err) throw err;
 
+        // shouldn't it be if(data)?
         if (dbArr) {
             dbArr = JSON.parse(data);
         }
@@ -93,11 +94,52 @@ app.post("/api/notes", (req, res) => {
 
 // DELETE /api/notes/:id
 
-// likely gonna be real similar to post!
-// read json.db file, parse it, use id# with for loop: is matches, splice/split/get rid of that object
-// save new db.json file
+app.delete("/api/notes/:id", (req, res) => {
+
+    const delId = parseInt(req.params.id);
+    let dbArr = [];
+
+    fs.readFile(path.join(__dirname, "./db/db.json"), 'utf8', (err, data) => {
+        if (err) throw err;
+
+        console.log(`reading file for deletion of ${delId}`);
 
 
+        if (dbArr) {
+            dbArr = JSON.parse(data);
+        }
+
+        console.log(dbArr.length);
+
+        // id not in req.body?
+
+        for (i = 0; i < dbArr.length; i++) {
+
+            if (dbArr[i].id === delId) {
+                dbArr.splice(i,1);
+            }
+        }
+
+        fs.writeFile("./db/db.json", JSON.stringify(dbArr), (err) => {
+            err ? console.error(err) : console.log("success!")
+        });
+
+        res.send();
+
+
+        // dbArr.splice()
+
+        // read & write files: as string!
+
+        // likely gonna be real similar to post!
+        // read json.db file, parse it, use id# with for loop: is matches, splice/split/get rid of that object
+        // save new db.json file
+
+
+
+    })
+
+})
 // =============================================================
 
 
